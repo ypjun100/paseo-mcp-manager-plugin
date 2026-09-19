@@ -140,8 +140,10 @@ export async function listCodex(): Promise<ProviderReport> {
     };
   }
 
+  // A readable list is a readable list. Codex can warn on stderr and still exit
+  // non-zero, and throwing the parsed servers away for that would hide them.
   const parsed = parseList(result.stdout);
-  if (parsed.kind === "servers" && result.code === 0) {
+  if (parsed.kind === "servers") {
     return { provider: "codex", available: true, error: null, servers: parsed.servers };
   }
   return {

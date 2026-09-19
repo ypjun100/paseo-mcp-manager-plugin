@@ -98,6 +98,12 @@ test("treats no configured servers as an empty list", () => {
   assert.deepEqual(parseList("[]"), { kind: "servers", servers: [] });
 });
 
+test("keeps a readable list even when the entry set is partial", () => {
+  const parsed = parseList('[{"name":"only","enabled":true,"auth_status":"unsupported"}]');
+  assert.equal(parsed.kind, "servers");
+  assert.equal(parsed.kind === "servers" ? parsed.servers[0].target : null, "-");
+});
+
 test("treats a changed JSON shape as unreadable rather than empty", () => {
   assert.deepEqual(parseList("not json"), { kind: "unreadable" });
   assert.deepEqual(parseList('{"servers": []}'), { kind: "unreadable" });

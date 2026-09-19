@@ -70,3 +70,8 @@ test("agent reload succeeds on a clean JSON body", () => {
   assert.equal(judged.ok, true);
   assert.match(judged.message, /Session restarted/);
 });
+
+test("agent reload reads a null error field as success, not failure", () => {
+  const judged = judgeReload(result({ code: 0, stdout: '{"agent":{"id":"a1"},"error":null}' }));
+  assert.equal(judged.ok, true);
+});

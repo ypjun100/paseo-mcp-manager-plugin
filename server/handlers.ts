@@ -47,11 +47,13 @@ export function judgeReload(result: RunResult): { ok: boolean; message: string }
   const body = result.stdout.trim() || result.stderr.trim();
   try {
     const parsed: unknown = JSON.parse(body);
-    if (parsed && typeof parsed === "object" && "error" in parsed) {
-      const message = (parsed as { error?: { message?: unknown } }).error?.message;
+    // Keyed on the value, not on the key: a success body carrying `error: null`
+    // would otherwise be read as a failure.
+    const error = (parsed as { error?: { message?: unknown } } | null)?.error;
+    if (error) {
       return {
         ok: false,
-        message: displayText(typeof message === "string" ? message : "Agent restart failed."),
+        message: displayText(typeof error.message === "string" ? error.message : "Agent restart failed."),
       };
     }
   } catch {
