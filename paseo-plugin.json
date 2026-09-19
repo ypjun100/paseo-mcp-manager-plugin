@@ -1,0 +1,7 @@
+{
+  "id": "paseo-mcp-manager",
+  "description": "Inspect and authenticate Claude Code and Codex MCP servers from inside Paseo",
+  "requirements": {
+    "paseo": ">=0.8.0 <0.9.0"
+  }
+}
