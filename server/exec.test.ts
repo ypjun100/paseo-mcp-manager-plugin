@@ -81,7 +81,7 @@ test("run reports a timeout instead of hanging", async () => {
 });
 
 test("run reports a spawn error for a missing executable", async () => {
-  const result = await run("/nonexistent/paseo-mcp-manager-test-bin", [], { timeoutMs: 5_000 });
+  const result = await run("/nonexistent/mcp-manager-test-bin", [], { timeoutMs: 5_000 });
   assert.ok(result.spawnError);
   assert.equal(result.code, null);
 });

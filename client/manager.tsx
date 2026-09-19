@@ -19,7 +19,7 @@ type Theme = PluginHostProps["theme"];
 type Layout = PluginHostProps["layout"];
 type Tone = "success" | "warning" | "danger" | "muted";
 
-const LIST_KEY = ["paseo-mcp-manager", "list"] as const;
+const LIST_KEY = ["mcp-manager", "list"] as const;
 
 const STATUS_META: Record<McpStatus, { icon: string; label: string; tone: Tone }> = {
   connected: { icon: "CircleCheck", label: "Connected", tone: "success" },

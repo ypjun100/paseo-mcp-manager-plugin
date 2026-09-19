@@ -40,6 +40,6 @@ Unit tests live next to the module they cover as `server/*.test.ts` and run on t
 ```bash
 paseo plugin install "$PWD"
 paseo plugin ls
-paseo plugin logs paseo-mcp-manager
-paseo plugin reload paseo-mcp-manager
+paseo plugin logs mcp-manager
+paseo plugin reload mcp-manager
 ```
